@@ -42,7 +42,9 @@ final class Routes(container: EntryPointDependencyContainer) {
           )
         }
       }
-    }
+    } ~ get {
+    path("videos" / "latest")(container.videoGetController.getLatest)
+  }
 
   val all: Route = status ~ user ~ video
 

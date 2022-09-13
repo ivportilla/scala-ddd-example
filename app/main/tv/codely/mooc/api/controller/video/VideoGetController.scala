@@ -9,4 +9,5 @@ import tv.codely.mooc.video.infrastructure.marshaller.VideoJsonFormatMarshaller.
 
 final class VideoGetController(searcher: VideosSearcher) extends SprayJsonSupport with DefaultJsonProtocol {
   def get(): StandardRoute = complete(searcher.all())
+  def getLatest: StandardRoute = complete(searcher.latest())
 }

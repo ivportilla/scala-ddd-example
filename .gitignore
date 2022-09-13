@@ -19,3 +19,5 @@ app/target
 # Application log file and compressed previous logs (see conf/logback.xml)
 var/log/app_log.json
 var/log/app_log-*.gz
+
+.idea

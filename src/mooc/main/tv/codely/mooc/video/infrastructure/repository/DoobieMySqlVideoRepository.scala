@@ -17,4 +17,7 @@ final class DoobieMySqlVideoRepository(db: DoobieDbConnection)(implicit executio
       .transact(db.transactor)
       .unsafeToFuture()
       .map(_ => ())
+
+  override def latest(): Future[Option[Video]] =
+    db.read(sql"SELECT video_id, title, duration_in_seconds, category, creator_id FROM videos ORDER BY updated_at DESC LIMIT 1".query[Video].option)
 }

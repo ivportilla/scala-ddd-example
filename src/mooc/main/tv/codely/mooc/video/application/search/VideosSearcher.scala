@@ -6,4 +6,5 @@ import scala.concurrent.Future
 
 final class VideosSearcher(repository: VideoRepository) {
   def all(): Future[Seq[Video]] = repository.all()
+  def latest(): Future[Option[Video]] = repository.latest()
 }

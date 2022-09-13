@@ -47,4 +47,16 @@ final class VideoEntryPointShould extends HttpSpec with BeforeAndAfterEach {
       entityAs[String].parseJson shouldBe VideoJsValueMarshaller.marshall(videos)
     }
   }
+
+  "return the latest video" in {
+    val videos = VideoMother.randomSeq
+
+    videos.foreach(v => videoDependencies.repository.save(v).futureValue)
+
+    getting("/videos/latest") {
+      status shouldBe StatusCodes.OK
+      contentType shouldBe ContentTypes.`application/json`
+      Some(entityAs[String].parseJson) shouldBe VideoJsValueMarshaller.marshall(videos.lastOption)
+    }
+  }
 }
